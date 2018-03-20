@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/pawelcwik/protobufs_java#readme",
   "dependencies": {
+    "@types/text-encoding": "0.0.32",
     "protobufjs": "^6.8.6"
   }
 }

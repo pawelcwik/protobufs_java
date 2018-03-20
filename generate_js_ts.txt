@@ -1,4 +1,9 @@
-./node_modules/protobufjs/bin/pbjs --es6 -t static-module ./src/main/resources/user.proto > src/web/messages.js
+./node_modules/protobufjs/bin/pbjs -t static-module ./src/main/resources/user.proto > src/web/messages.js
 ./node_modules/protobufjs/bin/pbts -o src/web/messages.d.ts ./src/web/messages.js
 
 
+compile:
+  > tsc
+  > browserify src/web/test.js > src/web/bundle.js
+
+open index.html ;)
