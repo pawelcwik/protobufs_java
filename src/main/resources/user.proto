@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package clockworkjava;
+option java_package = "pl.clockworkjava";
+option java_outer_classname = "UserData";
+
+message User {
+    int32 id = 1;
+    string firstName = 2;
+    string lastName = 3;
+
+    repeated PhoneNumber phone = 5;
+
+    message PhoneNumber {
+        string number = 1;
+        PhoneType type = 2;
+    }
+
+    enum PhoneType {
+        MOBILE = 0;
+        LANDLINE = 1;
+    }
+}
