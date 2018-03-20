@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package clockworkjava;
+package UserData;
 option java_package = "pl.clockworkjava";
 option java_outer_classname = "UserData";
 
