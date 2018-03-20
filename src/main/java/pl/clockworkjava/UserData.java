@@ -4,7 +4,6 @@
 package pl.clockworkjava;
 
 public final class UserData {
-
   private UserData() {}
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
@@ -67,6 +66,25 @@ public final class UserData {
      */
     pl.clockworkjava.UserData.User.PhoneNumberOrBuilder getPhoneOrBuilder(
         int index);
+
+    /**
+     * <code>repeated string addr = 8;</code>
+     */
+    java.util.List<java.lang.String>
+        getAddrList();
+    /**
+     * <code>repeated string addr = 8;</code>
+     */
+    int getAddrCount();
+    /**
+     * <code>repeated string addr = 8;</code>
+     */
+    java.lang.String getAddr(int index);
+    /**
+     * <code>repeated string addr = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getAddrBytes(int index);
   }
   /**
    * Protobuf type {@code clockworkjava.User}
@@ -85,6 +103,7 @@ public final class UserData {
       firstName_ = "";
       lastName_ = "";
       phone_ = java.util.Collections.emptyList();
+      addr_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     }
 
     @java.lang.Override
@@ -144,6 +163,15 @@ public final class UserData {
                   input.readMessage(pl.clockworkjava.UserData.User.PhoneNumber.parser(), extensionRegistry));
               break;
             }
+            case 66: {
+              java.lang.String s = input.readStringRequireUtf8();
+              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+                addr_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000010;
+              }
+              addr_.add(s);
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -154,6 +182,9 @@ public final class UserData {
       } finally {
         if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
           phone_ = java.util.Collections.unmodifiableList(phone_);
+        }
+        if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+          addr_ = addr_.getUnmodifiableView();
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -999,6 +1030,35 @@ public final class UserData {
       return phone_.get(index);
     }
 
+    public static final int ADDR_FIELD_NUMBER = 8;
+    private com.google.protobuf.LazyStringList addr_;
+    /**
+     * <code>repeated string addr = 8;</code>
+     */
+    public com.google.protobuf.ProtocolStringList
+        getAddrList() {
+      return addr_;
+    }
+    /**
+     * <code>repeated string addr = 8;</code>
+     */
+    public int getAddrCount() {
+      return addr_.size();
+    }
+    /**
+     * <code>repeated string addr = 8;</code>
+     */
+    public java.lang.String getAddr(int index) {
+      return addr_.get(index);
+    }
+    /**
+     * <code>repeated string addr = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAddrBytes(int index) {
+      return addr_.getByteString(index);
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -1023,6 +1083,9 @@ public final class UserData {
       for (int i = 0; i < phone_.size(); i++) {
         output.writeMessage(5, phone_.get(i));
       }
+      for (int i = 0; i < addr_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 8, addr_.getRaw(i));
+      }
       unknownFields.writeTo(output);
     }
 
@@ -1044,6 +1107,14 @@ public final class UserData {
       for (int i = 0; i < phone_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, phone_.get(i));
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < addr_.size(); i++) {
+          dataSize += computeStringSizeNoTag(addr_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getAddrList().size();
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1069,6 +1140,8 @@ public final class UserData {
           .equals(other.getLastName());
       result = result && getPhoneList()
           .equals(other.getPhoneList());
+      result = result && getAddrList()
+          .equals(other.getAddrList());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -1089,6 +1162,10 @@ public final class UserData {
       if (getPhoneCount() > 0) {
         hash = (37 * hash) + PHONE_FIELD_NUMBER;
         hash = (53 * hash) + getPhoneList().hashCode();
+      }
+      if (getAddrCount() > 0) {
+        hash = (37 * hash) + ADDR_FIELD_NUMBER;
+        hash = (53 * hash) + getAddrList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -1232,6 +1309,8 @@ public final class UserData {
         } else {
           phoneBuilder_.clear();
         }
+        addr_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -1268,6 +1347,11 @@ public final class UserData {
         } else {
           result.phone_ = phoneBuilder_.build();
         }
+        if (((bitField0_ & 0x00000010) == 0x00000010)) {
+          addr_ = addr_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000010);
+        }
+        result.addr_ = addr_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1346,6 +1430,16 @@ public final class UserData {
               phoneBuilder_.addAllMessages(other.phone_);
             }
           }
+        }
+        if (!other.addr_.isEmpty()) {
+          if (addr_.isEmpty()) {
+            addr_ = other.addr_;
+            bitField0_ = (bitField0_ & ~0x00000010);
+          } else {
+            ensureAddrIsMutable();
+            addr_.addAll(other.addr_);
+          }
+          onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1778,6 +1872,100 @@ public final class UserData {
         }
         return phoneBuilder_;
       }
+
+      private com.google.protobuf.LazyStringList addr_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureAddrIsMutable() {
+        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+          addr_ = new com.google.protobuf.LazyStringArrayList(addr_);
+          bitField0_ |= 0x00000010;
+         }
+      }
+      /**
+       * <code>repeated string addr = 8;</code>
+       */
+      public com.google.protobuf.ProtocolStringList
+          getAddrList() {
+        return addr_.getUnmodifiableView();
+      }
+      /**
+       * <code>repeated string addr = 8;</code>
+       */
+      public int getAddrCount() {
+        return addr_.size();
+      }
+      /**
+       * <code>repeated string addr = 8;</code>
+       */
+      public java.lang.String getAddr(int index) {
+        return addr_.get(index);
+      }
+      /**
+       * <code>repeated string addr = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAddrBytes(int index) {
+        return addr_.getByteString(index);
+      }
+      /**
+       * <code>repeated string addr = 8;</code>
+       */
+      public Builder setAddr(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureAddrIsMutable();
+        addr_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string addr = 8;</code>
+       */
+      public Builder addAddr(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureAddrIsMutable();
+        addr_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string addr = 8;</code>
+       */
+      public Builder addAllAddr(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureAddrIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, addr_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string addr = 8;</code>
+       */
+      public Builder clearAddr() {
+        addr_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string addr = 8;</code>
+       */
+      public Builder addAddrBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        ensureAddrIsMutable();
+        addr_.add(value);
+        onChanged();
+        return this;
+      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFieldsProto3(unknownFields);
@@ -1846,14 +2034,14 @@ public final class UserData {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\024resources/user.proto\022\rclockworkjava\"\332\001" +
+      "\n\024resources/user.proto\022\rclockworkjava\"\350\001" +
       "\n\004User\022\n\n\002id\030\001 \001(\005\022\021\n\tfirstName\030\002 \001(\t\022\020\n" +
       "\010lastName\030\003 \001(\t\022.\n\005phone\030\005 \003(\0132\037.clockwo" +
-      "rkjava.User.PhoneNumber\032J\n\013PhoneNumber\022\016" +
-      "\n\006number\030\001 \001(\t\022+\n\004type\030\002 \001(\0162\035.clockwork" +
-      "java.User.PhoneType\"%\n\tPhoneType\022\n\n\006MOBI" +
-      "LE\020\000\022\014\n\010LANDLINE\020\001B\034\n\020pl.clockworkjavaB\010" +
-      "UserDatab\006proto3"
+      "rkjava.User.PhoneNumber\022\014\n\004addr\030\010 \003(\t\032J\n" +
+      "\013PhoneNumber\022\016\n\006number\030\001 \001(\t\022+\n\004type\030\002 \001" +
+      "(\0162\035.clockworkjava.User.PhoneType\"%\n\tPho" +
+      "neType\022\n\n\006MOBILE\020\000\022\014\n\010LANDLINE\020\001B\034\n\020pl.c" +
+      "lockworkjavaB\010UserDatab\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1872,7 +2060,7 @@ public final class UserData {
     internal_static_clockworkjava_User_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_clockworkjava_User_descriptor,
-        new java.lang.String[] { "Id", "FirstName", "LastName", "Phone", });
+        new java.lang.String[] { "Id", "FirstName", "LastName", "Phone", "Addr", });
     internal_static_clockworkjava_User_PhoneNumber_descriptor =
       internal_static_clockworkjava_User_descriptor.getNestedTypes().get(0);
     internal_static_clockworkjava_User_PhoneNumber_fieldAccessorTable = new
